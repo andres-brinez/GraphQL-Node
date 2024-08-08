@@ -14,13 +14,32 @@ import { startStandaloneServer } from "@apollo/server/standalone";
  */
 const typeDefs = `#graphql 
 
+ 
   type User{
     name: String
     email: String
+    role:Role
+  }
+
+  input UserID{
+    id: ID!
+  } 
+
+  input CreateUserInput{
+    name: String
+    email: String
+    role: String
+  }
+
+  type Role{
+    name: string
   }
 
   type Query{
-    users: User
+    users: [User]
+    user : User
+    getUserById(id: UserID!): [User]
+    
   }
 
 `;
@@ -31,16 +50,25 @@ const users = [
   {
     name: "Andres",
     email: "andres@gmail.com",
+    role:{
+      name: "Administrator"
+    }
 
   },
   {
     name: "Felipe",
     email: "felipe@gmail.com",
+    role:{
+      name: "Administrator"
+    }
 
   },
   {
     name: "Briñez",
     email: "briñez@gmail.com",
+    role:{
+      name:"User"
+    }
 
   },
 
@@ -50,9 +78,18 @@ const users = [
 // Se define cómo se resuelven las consultas. En este caso, la consulta 'users' devuelve el primer usuario del array.
 const resolvers = {
   Query: {
-    users: () => users[0],
+    users: () => users,
+    user: ()=> users[0],
+    getUserById: (parent,args,context,info)=>{
+      console.log(args);
+      const {id}= args.id
+      return users.filter(user=> user.email === id)
+    }
+
   }
 }
+
+//Es una práctica recomendada y una convención en GraphQL que el nombre del campo en el tipo Query y el nombre de la función correspondiente en el resolver sean iguales.
 
 // Se crea el servidor
 // Nos pide una configuración
@@ -72,3 +109,27 @@ const {url}= await startStandaloneServer(server,{
 
 // Confirmación de inicio:
 console.log("App listening on " + url)
+
+/* Flujo:
+Cuando se hace una consulta GraphQL a users, Apollo Server utiliza el schema para validar la consulta.
+query{
+  users: {
+    name
+    role{
+      name
+    }
+  }
+}
+// Con input o argumentos
+query GetUserById {
+  getUserById(id: {id: "1"}) {
+    name
+    role{
+      name
+    }
+  }
+
+}
+Luego, invoca el resolver correspondiente (en este caso, la función users).
+El resolver accede a los datos (aquí, el array users) y devuelve el resultado.
+Apollo Server formatea la respuesta según el schema y la envía al cliente. */
