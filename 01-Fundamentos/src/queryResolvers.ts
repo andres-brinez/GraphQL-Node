@@ -1,6 +1,10 @@
 // Definir lo minimo necesario para que GraphQL pueda funcionar
 // GraphQL nos pide dos cosas para crear la api de GraphQL
 
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+
+
 // Tipo Query, se debe definir el tipado
 // por estandar se llama typeDefs, esto es lo que se le manda a apollo server
 
@@ -49,3 +53,22 @@ const resolvers = {
     users: () => users[0],
   }
 }
+
+// Se crea el servidor
+// Nos pide una configuración
+// Aquí se crea una nueva instancia de ApolloServer, pasándole la configuración que incluye los typeDefs (definición del esquema) y los resolvers que se definieron anteriormente.
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+})
+
+// Arranque del servidor
+// Este código inicia el servidor Apollo de forma independiente. Se especifica que escuche en el puerto 4000. La función devuelve la URL donde el servidor está escuchando.
+const {url}= await startStandaloneServer(server,{
+  listen:{
+    port:4000
+  }
+})
+
+// Confirmación de inicio:
+console.log("App listening on " + url)
