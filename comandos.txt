@@ -1,0 +1,18 @@
+1) El comando npm init -y se utiliza para inicializar rápidamente un nuevo proyecto de Node.js.
+Crea un nuevo archivo package.json en el directorio actual.
+Establece valores predeterminados para varios campos en el archivo package.json,
+
+2)Nodemon es una herramienta muy útil para desarrolladores de Node.js. esto se puede cambiar en las configuraciones del scrpit
+Definición: Nodemon es una utilidad que monitorea los cambios en los archivos de tu proyecto Node.js y automáticamente reinicia el servidor cuando detecta alguna modificación.
+Propósito: Su principal objetivo es ahorrar tiempo durante el desarrollo, eliminando la necesidad de detener y reiniciar manualmente el servidor cada vez que haces un cambio en tu código.
+Se puede instalar  con: npm install -D nodemon 
+
+3)npm install --save-dev typescript @types/node
+Instala TypeScript como una dependencia de desarrollo en tu proyecto. Esto significa que TypeScript se utilizará durante el desarrollo pero no se incluirá en la versión de producción.
+Instala los tipos de Node.js (@types/node) como una dependencia de desarrollo. Estos tipos proporcionan definiciones de TypeScript para las APIs de Node.js, lo que mejora el autocompletado y la verificación de tipos en tu entorno de desarrollo.
+Agrega ambas dependencias a la sección "devDependencies" de tu package.json.
+Permite usar TypeScript en tu proyecto Node.js, lo que te da acceso a características como tipado estático, interfaces, decoradores y otras funcionalidades avanzadas de TypeScript.
+Facilita la detección temprana de errores y mejora la calidad del código al proporcionar un sistema de tipos más robusto.
+
+4) npm install -D ts-node
+Ts-node es una herramienta muy útil que permite ejecutar TypeScript directamente sin necesidad de compilarlo previamente a JavaScript.
