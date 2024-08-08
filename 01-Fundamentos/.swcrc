@@ -1,0 +1,19 @@
+// Se configura swc
+// SWC (Speedy Web Compiler) es una herramienta de compilación rápida para JavaScript y TypeScript, escrita en Rust.
+{
+  "minify": true,
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "minify": {
+      "compress": {
+        "unused": true
+      },
+      "mangle": true
+    }
+  }
+}

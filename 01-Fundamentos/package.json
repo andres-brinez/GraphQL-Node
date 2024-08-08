@@ -5,9 +5,11 @@
   "main": "./dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npm run compile\" \"npm run watch\" ",
+    "compile": "swc src -w --out-dir dist",
+    "watch": "nodemon dist/index.js",
+    "build": "swc src --out-dir dist"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +19,11 @@
     "graphql": "^16.9.0"
   },
   "devDependencies": {
+    "@swc/cli": "^0.4.0",
+    "@swc/core": "^1.7.6",
     "@types/node": "^22.1.0",
+    "concurrently": "^8.2.2",
     "nodemon": "^3.1.4",
-    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
 }

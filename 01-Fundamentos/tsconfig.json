@@ -1,6 +1,5 @@
 // El tsconfig.json es un archivo de configuración crucial para proyectos TypeScript.
 {
-  "strict": true,
   "compilerOptions": {
     "rootDirs": ["src"],
     "outDir": "dist",
@@ -10,5 +9,10 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "types": ["node"]
+  },
+  "strict":true,
+  "ts-node": {
+    "esm": true
   }
+
 }

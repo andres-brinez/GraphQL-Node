@@ -16,3 +16,8 @@ Facilita la detección temprana de errores y mejora la calidad del código al pr
 
 4) npm install -D ts-node
 Ts-node es una herramienta muy útil que permite ejecutar TypeScript directamente sin necesidad de compilarlo previamente a JavaScript.
+ya no se usa ts-node sino concurrently que es una herramienta que permite ejecutar varios comandos en paralelo.
+
+5) Despues de la versión 20 de node aparece el error de  code: 'ERR_UNKNOWN_FILE_EXTENSION'
+Para solucionar este eror se puede guiar de este GithubGist
+https://gist.github.com/YirsisHertz/0609ba905b03d3d519e4630dfa725023
